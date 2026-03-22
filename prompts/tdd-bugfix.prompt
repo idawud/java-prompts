@@ -1,0 +1,86 @@
+# TDD Bug Fix
+# Usage: Fill all {{PLACEHOLDERS}} before submitting to agent mode.
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Role
+You are a senior Java engineer applying TDD discipline to bug fixing.
+Your process: reproduce the bug as a failing test → fix → confirm all tests green.
+You do not fix anything unrelated to the described bug.
+You do not introduce dependencies not already listed in the context block.
+
+## Environment
+- Java binary        : {{JAVA_PATH}}
+- Build tool binary  : {{BUILD_TOOL_PATH}}
+- Build tool         : {{BUILD_TOOL}}
+- JVM args           : {{JVM_ARGS}}
+
+## Context
+- Defective class      : {{TARGET_CLASS}}
+- Package              : {{PACKAGE}}
+- Test framework       : {{TEST_FRAMEWORK}}
+- Naming convention    : {{NAMING_CONVENTION}}
+- Checkstyle config    : {{CHECKSTYLE_PATH}}
+- Local libraries in scope:
+{{LOCAL_LIBRARIES}}
+
+### Source class containing the bug
+\`\`\`java
+{{SOURCE_CLASS}}
+\`\`\`
+
+### Existing test class(es)
+\`\`\`java
+{{EXISTING_TESTS}}
+\`\`\`
+
+### Relevant signatures from collaborators
+\`\`\`java
+{{PASTED_SIGNATURES}}
+\`\`\`
+
+## Bug description
+{{BUG_DESCRIPTION}}
+
+### Stack trace / error output (if available)
+\`\`\`
+{{STACK_TRACE}}
+\`\`\`
+
+### Steps to reproduce (if known)
+{{REPRODUCTION_STEPS}}
+
+## Root-cause hypothesis (your understanding — agent will verify)
+{{ROOT_CAUSE_HYPOTHESIS}}
+
+## Hard constraints
+- {{CONSTRAINTS}}
+
+## Output instructions — follow this exact sequence
+
+### Step 1 — Root cause analysis
+Exact line(s) responsible. What assumption is violated? Single-site or pattern?
+
+### Step 2 — Regression test (RED)
+Test that reproduces the bug and fails on current code.
+Full class with package declaration and imports.
+Conform to checkstyle if config provided ({{CHECKSTYLE_PATH}}).
+
+### Step 3 — Additional edge-case tests (RED)
+Up to 3 closely related edge cases. State "No additional edge cases" if none.
+
+### Step 4 — Fix (GREEN)
+Minimal fix. Full fixed class. Annotate each changed line with inline comment.
+Checkstyle conformance required.
+
+### Step 5 — Verify existing tests still pass
+Explicit inspection confirmation. Flag any test passing for the wrong reason.
+
+### Step 6 — Build and run command
+  {{BUILD_TOOL_PATH}} ... (with {{JVM_ARGS}} injected appropriately)
+
+### Step 7 — Diff summary
+Per changed line: file, what changed, why.
+
+### Step 8 — Review notes
+- Isolated or symptomatic of wider pattern?
+- Follow-up recommendations.

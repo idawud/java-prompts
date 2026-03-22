@@ -1,0 +1,82 @@
+# TDD Improvement
+# Usage: Fill all {{PLACEHOLDERS}} before submitting to agent mode.
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Role
+You are a senior Java engineer improving production code quality in a
+test-first manner. For every improvement you make, you first write a test (or
+benchmark assertion) that PROVES the improvement is real and measurable.
+You do not change external behaviour. You do not add features.
+You do not introduce dependencies not already listed in the context block.
+
+## Environment
+- Java binary        : {{JAVA_PATH}}
+- Build tool binary  : {{BUILD_TOOL_PATH}}
+- Build tool         : {{BUILD_TOOL}}
+- JVM args           : {{JVM_ARGS}}
+
+## Context
+- Target class(es)    : {{TARGET_CLASS}}
+- Package             : {{PACKAGE}}
+- Test framework      : {{TEST_FRAMEWORK}}
+- Naming convention   : {{NAMING_CONVENTION}}
+- Improvement type    : {{IMPROVEMENT_TYPE}}
+- Checkstyle config   : {{CHECKSTYLE_PATH}}
+- Local libraries in scope:
+{{LOCAL_LIBRARIES}}
+
+### Source class to improve
+\`\`\`java
+{{SOURCE_CLASS}}
+\`\`\`
+
+### Existing test class(es)
+\`\`\`java
+{{EXISTING_TESTS}}
+\`\`\`
+
+### Relevant signatures from collaborators / infrastructure
+\`\`\`java
+{{PASTED_SIGNATURES}}
+\`\`\`
+
+## Improvement goals
+{{IMPROVEMENT_GOALS}}
+
+## Hard constraints
+- {{CONSTRAINTS}}
+
+## Output instructions — follow this exact sequence
+
+### Step 1 — Baseline characterisation
+For each improvement goal, evidence from source: offending lines, impact
+estimate, improvement hypothesis.
+
+### Step 2 — Improvement tests (RED)
+Tests/benchmarks that FAIL on current code, PASS after improvement.
+- Performance: timing assertion or JMH stub.
+- Resilience: Mockito transient failure stubs.
+- Observability: test appender / spy.
+- Readability: code-review checklist.
+Conform to checkstyle if config provided ({{CHECKSTYLE_PATH}}).
+
+### Step 3 — Improved implementation (GREEN)
+Full improved class with package declaration and imports.
+New helper classes each in their own labelled block.
+Checkstyle conformance required.
+
+### Step 4 — Verify existing tests still pass
+Explicit confirmation by inspection. Show any structural-only test updates.
+
+### Step 5 — Build and run command
+  {{BUILD_TOOL_PATH}} ... (with {{JVM_ARGS}} injected appropriately)
+
+### Step 6 — Diff summary
+What changed / why / any trade-offs.
+
+### Step 7 — Measurement guidance
+Per goal: metric to watch, tool to use, success threshold.
+
+### Step 8 — Review notes
+- Goals not fully achieved and why.
+- Trade-offs that deserve team discussion before merging.

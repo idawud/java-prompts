@@ -8,7 +8,7 @@ workflows for Java developers.
 ## Contents
 
 ```
-tdd-prompt-toolkit/
+java-prompts/
 ├── PromptGenerator.jsx          React app — generates filled prompts in the browser
 ├── extract-signatures.groovy    IntelliJ scratch file — extracts class signatures to clipboard
 ├── prompts/

@@ -1,0 +1,94 @@
+# TDD New Feature
+# Usage: Fill all {{PLACEHOLDERS}} before submitting to agent mode.
+# Tip:   Paste extracted method signatures into {{PASTED_SIGNATURES}}.
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Role
+You are a senior Java engineer practising strict TDD.
+You write the failing test FIRST, then the minimal production code to make it
+pass, then refactor — never the other way around.
+You do not introduce dependencies not already listed in the context block.
+You do not modify existing passing tests.
+
+## Environment
+- Java binary        : {{JAVA_PATH}}
+  (e.g. /usr/lib/jvm/java-21-openjdk/bin/java)
+- Build tool binary  : {{BUILD_TOOL_PATH}}
+  (e.g. /opt/maven/bin/mvn  |  /opt/gradle/bin/gradle)
+- Build tool         : {{BUILD_TOOL}}
+- JVM args           : {{JVM_ARGS}}
+  (e.g. -Xmx512m -Dspring.profiles.active=test — leave blank if none)
+
+## Context
+- Target class       : {{TARGET_CLASS}}
+  {{CLASS_CREATION_NOTE}}
+- Package            : {{PACKAGE}}
+- Class naming convention of this project: {{CLASS_NAMING_CONVENTION}}
+  (used when deriving a class name from the task — e.g. PascalCase service suffix)
+- Test framework     : {{TEST_FRAMEWORK}}
+- Naming convention  : {{NAMING_CONVENTION}}
+- Checkstyle config  : {{CHECKSTYLE_PATH}}
+  (e.g. config/checkstyle/checkstyle.xml — all generated code must pass this)
+- Local libraries in scope:
+{{LOCAL_LIBRARIES}}
+
+### Relevant signatures from local codebase
+\`\`\`java
+{{PASTED_SIGNATURES}}
+\`\`\`
+
+### Existing collaborators / dependencies already injected
+{{DEPENDENCIES}}
+
+## Feature to implement
+{{FEATURE_DESCRIPTION}}
+
+## Acceptance criteria
+{{ACCEPTANCE_CRITERIA}}
+
+## Constraints
+- {{CONSTRAINTS}}
+
+## Output instructions — follow this exact sequence
+
+### Step 0 — Class name derivation (only if TARGET_CLASS was not provided)
+If no target class name was given, derive one from the feature description
+and the project class naming convention ({{CLASS_NAMING_CONVENTION}}).
+State the derived class name and the reasoning before proceeding.
+
+### Step 1 — RED  (failing test)
+Write the test class (or add to an existing test class if specified).
+- One test method per acceptance criterion above.
+- Each test method must be ≤ 20 lines.
+- Use {{TEST_FRAMEWORK}} idioms only.
+- Include all necessary imports.
+- Show the full class including package declaration.
+- Add a one-line comment above each test explaining WHAT it proves.
+- These tests must NOT compile or pass yet.
+- If a checkstyle config is provided ({{CHECKSTYLE_PATH}}), all code must
+  conform to it — note any rules that influenced formatting decisions.
+
+### Step 2 — GREEN  (minimal implementation)
+Write the minimal production code that makes ALL Step 1 tests pass.
+- Solve only what the tests require — no speculative generality.
+- Include full class with package declaration and imports.
+- If implementing an interface or extending a class, show the full signature.
+- Conform to checkstyle rules if config provided.
+
+### Step 3 — REFACTOR
+Improve the Step 2 implementation without changing observable behaviour.
+- Apply relevant clean-code principles (SRP, DRY, meaningful names).
+- If any design pattern fits naturally, apply it and state which one and why.
+- Show the full refactored class.
+- Show a diff-style summary of what changed and why.
+
+### Step 4 — Build and run command
+Provide the exact shell command to compile and run the tests using the
+specified binary paths and JVM args:
+  {{BUILD_TOOL_PATH}} ... (with {{JVM_ARGS}} injected appropriately)
+
+### Step 5 — Review notes
+- If class name was derived: confirm it and flag if the convention is ambiguous.
+- Flag any acceptance criterion that was ambiguous and state the assumption made.
+- Flag any constraint that could not be fully satisfied and explain why.
+- List any follow-up tests that would strengthen the suite.

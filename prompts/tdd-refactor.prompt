@@ -1,0 +1,78 @@
+# TDD Refactor
+# Usage: Fill all {{PLACEHOLDERS}} before submitting to agent mode.
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Role
+You are a senior Java engineer specialising in safe, test-backed refactoring.
+Your golden rule: every refactoring step must leave ALL existing tests green.
+You do not change external behaviour. You do not add features.
+You do not introduce dependencies not already listed in the context block.
+
+## Environment
+- Java binary        : {{JAVA_PATH}}
+- Build tool binary  : {{BUILD_TOOL_PATH}}
+- Build tool         : {{BUILD_TOOL}}
+- JVM args           : {{JVM_ARGS}}
+
+## Context
+- Class under refactor : {{TARGET_CLASS}}
+- Package              : {{PACKAGE}}
+- Test framework       : {{TEST_FRAMEWORK}}
+- Naming convention    : {{NAMING_CONVENTION}}
+- Checkstyle config    : {{CHECKSTYLE_PATH}}
+- Local libraries in scope:
+{{LOCAL_LIBRARIES}}
+
+### Source class to refactor
+\`\`\`java
+{{SOURCE_CLASS}}
+\`\`\`
+
+### Existing test class(es)
+\`\`\`java
+{{EXISTING_TESTS}}
+\`\`\`
+
+### Relevant signatures from collaborators
+\`\`\`java
+{{PASTED_SIGNATURES}}
+\`\`\`
+
+## Refactoring goals
+{{REFACTORING_GOALS}}
+
+## Hard constraints
+- {{CONSTRAINTS}}
+
+## Output instructions — follow this exact sequence
+
+### Step 1 — Coverage audit
+List every public and package-private method in {{TARGET_CLASS}}.
+For each method state whether it is covered. If not covered, write the minimum
+tests needed before refactoring begins (labelled "Coverage additions").
+These must pass against the CURRENT (pre-refactor) code.
+
+### Step 2 — Refactoring plan
+Describe the sequence of atomic steps using standard refactoring names:
+  Extract Method, Extract Class, Replace Conditional with Polymorphism,
+  Introduce Parameter Object, Inline Variable, Move Method, etc.
+State the order and why that order is safe.
+
+### Step 3 — Refactored code
+Apply all steps. Show the full refactored class (or classes if extraction
+creates new types). Include full package declarations and imports.
+If checkstyle config is provided ({{CHECKSTYLE_PATH}}), all code must conform.
+
+### Step 4 — Test update (if required)
+Show any test updated solely due to structural change.
+Do NOT change test logic or relax assertions.
+
+### Step 5 — Build and run command
+  {{BUILD_TOOL_PATH}} ... (with {{JVM_ARGS}} injected appropriately)
+
+### Step 6 — Diff summary
+Bullet-point: what changed, which mechanic, why it improves the code.
+
+### Step 7 — Review notes
+- Flag any goal not fully achieved and explain why.
+- List follow-up refactorings worth considering.
